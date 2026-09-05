@@ -1,22 +1,94 @@
 .container{
-  height: 100dvh;
-}
-
-.container>form {
+  margin: 0;
   display: grid;
-  gap: 3px;
-  padding: 5px;
+  min-height: 100vh;
+  grid-template-rows: 100px 1fr 150px;
+  font-family:'Times New Roman', Times, serif; 
+  grid-template-areas: 
+  "header"
+  "main"
+  "footer";
+}
+.container>.header{
+  grid-area: header;
+  border-bottom: 1px solid black;
 }
 
-@media screen and (min-width: 600px){
+.container>.main{
+  padding: 2px 5px;
+  grid-area: main;
+}
+
+.mobile-nav-toggle{
+  z-index: 3;
+  position: absolute;
+  cursor: pointer;
+  background: lightgray;
+  padding: 0.25em; 
+}
+
+.container>.nav{
+  z-index: 2;
+  position: absolute;
+  background-color: rgb(59, 181, 206);
+  top: 0;
+  bottom: 0%;
+  left: 0;
+  width: 200px;    
+  transition:transform 0.2s ease;
+  transform: translateX(-120%);
+  text-align-last: center;
+}
+.container>.footer{
+  grid-area: footer;
+  border-top: 1px solid black;
+}
+.container>.main>table.added{
+  width: 70%;
+  border-collapse: collapse;
+}
+.container>.main>table.added th,
+.container>.main>table.added td{
+  border: 1px solid black;
+  text-align: left;
+  padding: 8px;
+}
+
+.add-button{
+  cursor: pointer;
+  border: none;
+  padding: 8px;
+}
+
+.nav.shown{
+transform: translateX(0%);
+}
+
+@media screen and (min-width:600px){
   .container{
-    display: grid;
-    justify-content: center;
-    align-items: center;
+    grid-template-columns: 200px 1fr;
+    grid-template-areas: 
+    "header header"
+    "nav main"
+    "footer footer";
   }
 
-  .container>form{
-    border: 3px solid black;
-    border-radius: 5px;
+  .container>.header{
+    grid-area: header;
+  }
+
+  .container>.header>.mobile-nav-toggle{
+    display: none;
+  }
+  .container>.nav{
+    position: static;
+    grid-area: nav;
+    transform: translateX(0%);
+  }
+  .container>.main{
+    grid-area: main;
+  }
+  .container>.footer{
+    grid-area: footer;
   }
 }
