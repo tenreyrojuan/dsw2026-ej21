@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 21</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const botonCargar = document.getElementById("btnCargar");
+
+        botonCargar.addEventListener("click", () => {
+          const turnos = [
+            {
+              turno: "#1",
+              paciente: "Lucas",
+            },
+            {
+              turno: "#2",
+              paciente: "Juan",
+            },
+            {
+              turno: "#3",
+              paciente: "Pedro",
+            },
+            {
+              turno: "#4",
+              paciente: "Maria",
+            },
+          ];
+
+          const tabla = document.createElement("table");
+
+          const thead = document.createElement("thead");
+          const filaHeader = document.createElement("tr");
+
+          const thTurno = document.createElement("th");
+          thTurno.textContent = "Número de turno";
+
+          const thPaciente = document.createElement("th");
+          thPaciente.textContent = "Nombre de Paciente";
+
+          filaHeader.appendChild(thTurno);
+          filaHeader.appendChild(thPaciente);
+          thead.appendChild(filaHeader);
+          tabla.appendChild(thead);
+
+          const tbody = document.createElement("tbody");
+          
+          turnos.forEach((item) => {
+            const fila = document.createElement("tr");
+
+            const celdaTurno = document.createElement("td");
+            const celdaPaciente = document.createElement("td");
+
+            celdaTurno.textContent = item.turno;
+            celdaPaciente.textContent = item.paciente;
+
+            fila.appendChild(celdaTurno);
+            fila.appendChild(celdaPaciente);
+
+            tbody.appendChild(fila);
+          });
+
+          tabla.appendChild(tbody);
+
+          const main = document.getElementById("contenidoPrincipal");
+          main.innerHTML = "";
+          main.appendChild(tabla);
+        });
+      });
+    </script>
+    
+    <div class="container">
+      <header class="header">Cabecera</header>
+      <nav class="nav">
+        <button id="btnCargar">Cargar Turnos</button>
+      </nav>
+      <main class="main" id="contenidoPrincipal"></main>
+      <footer class="footer">Pie de página</footer>
+    </div>
+  </body>
+</html>
